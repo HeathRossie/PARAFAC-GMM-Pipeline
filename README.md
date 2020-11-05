@@ -19,8 +19,8 @@ The current method utilizes a bit different strategy; it characterizes whole tri
 Imagine you got multiple time-series data like these
 ![image](https://user-images.githubusercontent.com/17682330/98270383-1c44fe00-1f8f-11eb-8858-d1966ab47b35.png)
 
-These are hypothetical data of several trials. Red and blue lines are supposed to a features obtained in an experiment.
-For example, these may be x and y positional data from tracking, distance metrics, orientation, or speed.
+These are hypothetical data of several trials. Red and blue lines are supposed as features obtained in an experiment.
+For example, these may be x and y positional data from tracking, distance metrics, orientations, or movement velocity.
 
 # (1) Dimensionality reducntion
 The  pipeline demostrated in this repo project time-series features in a trial into one location of abstract features space, using parallel factor analysis.
