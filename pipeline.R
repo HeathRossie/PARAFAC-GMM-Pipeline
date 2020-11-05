@@ -132,7 +132,8 @@ d.comp$true_class =
 
 
 ggplot(d.comp) + 
-  geom_point(aes(x=comp1, y=comp2, colour = as.factor(true_class)), size = .8, alpha=1) +  TM
+  geom_point(aes(x=comp1, y=comp2, colour = as.factor(true_class)), size = .8, alpha=1) +  
+  xlab("Component 1") + xlab("Component 2") + TM 
 
 
 
@@ -144,7 +145,8 @@ res.gmm = Mclust(d.comp, G=5)
 d.comp$class = res.gmm$classification
 
 ggplot(d.comp) + 
-  geom_point(aes(x=comp1, y=comp2, colour = as.factor(class)), size = .8, alpha=1) +  TM
+  geom_point(aes(x=comp1, y=comp2, colour = as.factor(class)), size = .8, alpha=1) +  
+  xlab("Component 1") + xlab("Component 2") + TM 
 
 # perfectly classified into true classes
 table(d.comp$class, d.comp$true_class)
@@ -170,4 +172,46 @@ ggplot(d.comp) +
   geom_point(aes(x=comp1, y=comp2, colour = as.factor(class_dpgmm)), size = .8, alpha=1) +  TM
 
 table(d.comp$class_dpgmm, d.comp$true_class)
+
+
+
+###--------------------------------------------------------------------------------###
+# (3) Visualizing each behaviral classes
+
+res$class = NA
+res$frame = NA
+for(i in 1:trialNum){
+
+  res[res$trial == i,]$class = rep(d.comp[i,]$class, trialFrames)
+  res[res$trial == i,]$frame = 1:trialFrames
+  
+}
+
+
+
+# make averaged data.frame of each behaviral pattern
+d.class = split(res, res$class) %>% lapply(., function(res){
+  
+  df = data.frame(
+    feature1 = tapply(res$feature1, res$frame, mean),
+    feature2 = tapply(res$feature2, res$frame, mean),
+    sd1 = tapply(res$feature1, res$frame, sd),
+    sd2 = tapply(res$feature2, res$frame, sd),
+    frame = 1:trialFrames,
+    time = 1:trialFrames * fps - fps,
+    class = res$class[1]
+  )
+  
+  return(df)
+}) %>% do.call(rbind,.)
+
+# visualization
+ggplot(d.class) + 
+  geom_line(aes(x=time, y=feature1), colour = "red", lwd=2) + 
+  geom_line(aes(x=time, y=feature2), colour = "blue", lwd=2) + 
+  ylab("features") +
+  xlab("time") + 
+  facet_wrap(~class) + TM + theme()
+
+
 
