@@ -22,12 +22,20 @@ Imagine you got multiple time-series data like these
 These are hypothetical data of several trials. Red and blue lines are supposed as features obtained in an experiment.
 For example, these may be x and y positional data from tracking, distance metrics, orientations, or movement velocity.
 
+Problem setting:
+As you can see, trial 14, 18, and 58 show similar movement patterns. One may would like to classify these behaviour into discrete clusters, which I call "behaviral patterns".
+
+
 # (1) Dimensionality reducntion
 The  pipeline demostrated in this repo project time-series features in a trial into one location of abstract features space, using parallel factor analysis.
+Briefly, parallel factor analysis is used for dimensinality reduction, since each trial are multi-dimensional data, namely time x features.
+
 
 ![image](https://user-images.githubusercontent.com/17682330/98271300-17cd1500-1f90-11eb-9799-6b7fcffd285f.png)
 
 Colours represent the true classes generated in a demo-data.
+
+
 
 # (2) Clustering Behavioral patterns
 Obviously, true classes are unknown in a real reserach. Thus, we need to estimate the classes by clustering method.
