@@ -7,8 +7,13 @@ This repo shows a demonstration of combiation of parallel factor analysis + Gaus
 The classification of trials may be useful to answer several research questions. For example,
 - what kind of behavioral patterns occured
 - or emerged across experimental sessions
-- how certain epxerimental manupulation affect behavioral patterns
+- how certain epxerimental manupulation affects behavioral patterns
 - neural corraltes of specific behavioural patterns
+
+
+A common analytic pipeline in computational ethology classfies the moment-to-memoment behavioral states by clustering frame-by-frame features.
+The current method utilizes a bit different strategy; it characterizes whole trials sequences, which can be multiple time-series as a behaviral patterns.
+
 
 # (0) Data 
 Imagine you got multiple time-series data like these
@@ -46,6 +51,5 @@ Because this demonstration is not from real data, trajectories are not interpret
 However, you would get good inspection from visualization of your own real dataset.
 
 ![image](https://user-images.githubusercontent.com/17682330/98273002-0dac1600-1f92-11eb-899f-d5f7e2b119ff.png)
-
 
 
